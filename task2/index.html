@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Web Workspace</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Web<span>Solutions</span></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#form-container">Inquiry Form</a></li>
+                <li><a href="#todo-container">Task Tracker</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="intro">
+            <h1>Intermediate Web Dashboard</h1>
+            <p>Responsive interface with real-time validation and dynamic DOM management.</p>
+        </section>
+
+        <div class="grid-layout">
+            
+            <section id="form-container" class="panel shadow">
+                <div class="panel-head">
+                    <h2>Contact Information</h2>
+                    <p>Fields marked with * are required</p>
+                </div>
+                <form id="contactForm" novalidate>
+                    <div class="field-row">
+                        <div class="input-box">
+                            <label for="userName">Full Name *</label>
+                            <input type="text" id="userName" placeholder="e.g., indhu baireddla">
+                            <span class="error-msg" id="nameError">Full name is required.</span>
+                        </div>
+                        <div class="input-box">
+                            <label for="userEmail">Email Address *</label>
+                            <input type="email" id="userEmail" placeholder="name@domain.com">
+                            <span class="error-msg" id="emailError">Please enter a valid email.</span>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <label for="userMessage">Message Content *</label>
+                        <textarea id="userMessage" rows="5" placeholder="Enter your detailed message..."></textarea>
+                        <div class="counter"><span id="currentCount">0</span>/250 characters</div>
+                    </div>
+
+                    <button type="submit" class="primary-btn">Submit Request</button>
+                </form>
+            </section>
+            <section id="todo-container" class="panel shadow">
+                <div class="panel-head">
+                    <h2>Manage Tasks</h2>
+                    <p>Add, complete, or remove your daily objectives.</p>
+                </div>
+                
+                <div class="todo-interface">
+                    <div class="todo-input-group">
+                        <input type="text" id="taskInput" placeholder="Write a new task...">
+                        <button id="addTaskBtn" class="secondary-btn">Add Task</button>
+                    </div>
+
+                    <div class="todo-stats">
+                        <span>Total Items: <strong id="totalTasks">0</strong></span>
+                        <button id="clearBtn" class="text-link-btn">Remove Completed</button>
+                    </div>
+
+                    <ul id="mainTaskList" class="scroll-area">
+                        <!-- Tasks will appear here dynamically -->
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2024 Software Development Workspace. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
