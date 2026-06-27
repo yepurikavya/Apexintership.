@@ -1,11 +1,10 @@
-/* Color Palette */
 :root {
     --bg-main: #0f172a;
     --sidebar-bg: #020617;
     --card-bg: #1e293b;
     --accent: #8b5cf6;
-    --success: #10b981; /* Green for correct */
-    --error: #ef4444;   /* Red for wrong */
+    --success: #10b981; 
+    --error: #ef4444;   
     --text-white: #f8fafc;
     --text-dim: #94a3b8;
 }
@@ -27,14 +26,12 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-main); 
 .progress-container { background: #334155; height: 8px; border-radius: 4px; margin: 20px 0; }
 #status-bar { background: var(--accent); height: 100%; width: 0%; border-radius: 4px; transition: 0.4s ease; }
 
-/* OPTION BUTTONS */
 .option-btn {
     display: block; width: 100%; padding: 15px; margin-bottom: 10px;
     background: #0f172a; border: 1px solid #475569;
     color: white; text-align: left; border-radius: 10px; cursor: pointer; transition: 0.2s;
 }
 
-/* INSTANT VALIDATION CLASSES */
 .correct { background-color: var(--success) !important; border-color: #059669 !important; }
 .wrong { background-color: var(--error) !important; border-color: #b91c1c !important; }
 .disabled-btn { pointer-events: none; opacity: 0.7; }

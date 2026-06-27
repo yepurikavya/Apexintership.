@@ -16,10 +16,8 @@ function showQuestion() {
     var data = quizLibrary[qPointer];
     document.getElementById("question-text").innerText = data.q;
     document.getElementById("q-count").innerText = "Question " + (qPointer + 1) + " of " + quizLibrary.length;
-    document.getElementById("status-bar").style.width = ((qPointer) / quizLibrary.length) * 100 + "%";
     
-    // Hide the next button until an answer is picked
-    document.getElementById("next-btn").classList.add("hide");
+    document.getElementById("status-bar").style.width = ((qPointer) / quizLibrary.length) * 100 + "%";
 
     var listArea = document.getElementById("options-list");
     listArea.innerHTML = "";
@@ -28,36 +26,18 @@ function showQuestion() {
         var btn = document.createElement("button");
         btn.innerText = opt;
         btn.className = "option-btn";
-        btn.onclick = function() { processAnswer(this, idx); };
+        btn.onclick = function() { processAnswer(idx); };
         listArea.appendChild(btn);
     });
 }
 
-function processAnswer(clickedBtn, userChoice) {
-    var correctIdx = quizLibrary[qPointer].correct;
-    var allButtons = document.getElementsByClassName("option-btn");
-
-    // Instant Validation Styling
-    if (userChoice === correctIdx) {
-        clickedBtn.classList.add("correct");
+function processAnswer(userChoice) {
+    if (userChoice === quizLibrary[qPointer].correct) {
         currentScore++;
-    } else {
-        clickedBtn.classList.add("wrong");
-        // Also highlight the correct one so user learns
-        allButtons[correctIdx].classList.add("correct");
     }
-
-    // Disable all buttons so user can't click twice
-    for (var i = 0; i < allButtons.length; i++) {
-        allButtons[i].classList.add("disabled-btn");
-    }
-
-    // Show the "Next Question" button
-    document.getElementById("next-btn").classList.remove("hide");
-}
-
-function nextQuestion() {
+    
     qPointer++;
+
     if (qPointer < quizLibrary.length) {
         showQuestion();
     } else {
@@ -79,16 +59,26 @@ function resetQuiz() {
     showQuestion();
 }
 
-// --- API LOGIC (Daily Advice) ---
+
 function getDailyAdvice() {
     var display = document.getElementById("advice-text");
+    var btn = document.getElementById("advice-btn");
+    
+    display.innerText = "Connecting to server...";
+    btn.disabled = true;
+
+    
     fetch("https://api.adviceslip.com/advice")
     .then(function(res) { return res.json(); })
     .then(function(data) {
         display.innerText = '"' + data.slip.advice + '"';
+        btn.disabled = false;
+    })
+    .catch(function() {
+        display.innerText = "Check your connection and try again.";
+        btn.disabled = false;
     });
 }
 
-// Initialize
 showQuestion();
 getDailyAdvice();
