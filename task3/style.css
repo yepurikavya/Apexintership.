@@ -2,7 +2,7 @@
     --bg-main: #0f172a;
     --sidebar-bg: #020617;
     --card-bg: #1e293b;
-    --accent: #8b5cf6;
+    --accent: #f69a5c;
     --success: #10b981; 
     --error: #ef4444;   
     --text-white: #f8fafc;
@@ -32,9 +32,17 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-main); 
     color: white; text-align: left; border-radius: 10px; cursor: pointer; transition: 0.2s;
 }
 
-.correct { background-color: var(--success) !important; border-color: #059669 !important; }
-.wrong { background-color: var(--error) !important; border-color: #b91c1c !important; }
-.disabled-btn { pointer-events: none; opacity: 0.7; }
+.option-btn.correct { 
+    background-color: var(--success) !important; 
+    border-color: #059669 !important; 
+}
+
+.option-btn.wrong { 
+    background-color: var(--error) !important; 
+    border-color: #b91c1c !important; 
+}
+
+.disabled-btn { pointer-events: none; opacity: 0.8; }
 
 .quiz-controls { margin-top: 20px; text-align: right; }
 .advice-display { background: #020617; padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid var(--accent); }
@@ -45,5 +53,5 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-main); 
 
 @media (max-width: 850px) {
     .app-container { flex-direction: column; }
-    .side-nav { width: 100%; height: auto; flex-direction: row; justify-content: space-between; }
+    .side-nav { width: 100%; height: auto; flex-direction: row; justify-content: space-between; padding: 20px; }
 }

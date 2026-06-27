@@ -32,17 +32,31 @@ function showQuestion() {
 }
 
 function processAnswer(userChoice) {
-    if (userChoice === quizLibrary[qPointer].correct) {
+    var correctIndex = quizLibrary[qPointer].correct;
+    var buttons = document.querySelectorAll(".option-btn");
+
+    buttons.forEach((btn, idx) => {
+        btn.classList.add("disabled-btn"); 
+        if (idx === correctIndex) {
+            btn.classList.add("correct");
+        } else if (idx === userChoice) {
+            btn.classList.add("wrong");
+        }
+    });
+
+    if (userChoice === correctIndex) {
         currentScore++;
     }
     
-    qPointer++;
-
-    if (qPointer < quizLibrary.length) {
-        showQuestion();
-    } else {
-        showFinalResults();
-    }
+   
+    setTimeout(() => {
+        qPointer++;
+        if (qPointer < quizLibrary.length) {
+            showQuestion();
+        } else {
+            showFinalResults();
+        }
+    }, 1000);
 }
 
 function showFinalResults() {
@@ -59,15 +73,12 @@ function resetQuiz() {
     showQuestion();
 }
 
-
 function getDailyAdvice() {
     var display = document.getElementById("advice-text");
     var btn = document.getElementById("advice-btn");
-    
     display.innerText = "Connecting to server...";
     btn.disabled = true;
 
-    
     fetch("https://api.adviceslip.com/advice")
     .then(function(res) { return res.json(); })
     .then(function(data) {
